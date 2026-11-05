@@ -1,4 +1,4 @@
-# 🎮 Winlator Hub (Legion External Launcher)
+# 🎮 Winlator Hub for all android (Legion External Launcher)
 
 **Winlator Hub** è un launcher Android nativo leggero e moderno, sviluppato in Kotlin e Jetpack Compose. È progettato specificamente per tablet ed emulazione handheld (ottimizzato per **Lenovo Legion Y700 Gen 3 / 2025**), consentendo di organizzare, catalogare e lanciare la propria libreria di giochi PC presenti su un SSD esterno USB-C (o pendrive OTG) tramite l'emulatore **Winlator**.
 
