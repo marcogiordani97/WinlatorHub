@@ -1,3 +1,5 @@
+<img width="2800" height="1260" alt="WhatsApp Image 2026-11-06 at 10 46 32" src="https://github.com/user-attachments/assets/9f38b9ac-cb72-4568-b5e1-03f6cdfad95c" />
+<img width="2800" height="1260" alt="WhatsApp Image 2026-11-06 at 10 46 32" src="https://github.com/user-attachments/assets/08440289-32df-4534-8a82-b3ae692faf14" />
 # 🎮 Winlator Hub for all android (Legion External Launcher)
 
 **Winlator Hub** è un launcher Android nativo leggero e moderno, sviluppato in Kotlin e Jetpack Compose. È progettato specificamente per tablet ed emulazione handheld (ottimizzato per **Lenovo Legion Y700 Gen 3 / 2025**), consentendo di organizzare, catalogare e lanciare la propria libreria di giochi PC presenti su un SSD esterno USB-C (o pendrive OTG) tramite l'emulatore **Winlator**.
@@ -28,7 +30,8 @@
 
 ## 📁 Struttura del Progetto
 
-```text
+```text<img width="2800" height="1260" alt="WhatsApp Image 2026-11-06 at 10 46 32" src="https://github.com/user-attachments/assets/4912dd67-58fd-4b6e-8514-126eb5ac28ac" />
+
 com.legion.winlatorhub/
 ├── data/
 │   └── AppDatabase.kt        # Entity (PcGameEntity), DAO (PcGameDao) e Room Database
