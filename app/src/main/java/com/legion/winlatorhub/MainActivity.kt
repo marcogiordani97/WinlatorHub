@@ -90,7 +90,17 @@ class MainActivity : ComponentActivity() {
     private fun launchWinlator(game: PcGameEntity) {
         val winlatorIntent = packageManager.getLaunchIntentForPackage("com.winlator")
         if (winlatorIntent != null) {
-            Toast.makeText(this, "Avvio Winlator... Avvia ${game.exeName} dal drive D:", Toast.LENGTH_LONG).show()
+            winlatorIntent.putExtra("exe_path", game.path)
+            winlatorIntent.putExtra("game_path", game.path)
+            winlatorIntent.putExtra("path", game.path)
+            winlatorIntent.putExtra("game_name", game.name)
+
+            val displayPath = if (game.path.isNotBlank()) game.path else game.exeName
+            Toast.makeText(
+                this,
+                "Avvio Winlator...\nPercorso gioco: $displayPath",
+                Toast.LENGTH_LONG
+            ).show()
             startActivity(winlatorIntent)
         } else {
             Toast.makeText(this, "Winlator non installato!", Toast.LENGTH_SHORT).show()
@@ -123,6 +133,14 @@ fun GameCard(game: PcGameEntity, onClick: () -> Unit) {
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
+            if (game.path.isNotBlank()) {
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = game.path,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.primary
+                )
+            }
         }
     }
 }

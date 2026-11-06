@@ -66,7 +66,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         if (currentDepth > maxDepth) return
 
         val dirName = dir.name ?: ""
-        // Ignore hidden and system directories commonly found on USB drives
         if (dirName.startsWith(".") ||
             dirName.startsWith("$") ||
             dirName.equals("System Volume Information", ignoreCase = true) ||
@@ -93,11 +92,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                         } else {
                             dirName
                         }
+                        val realPath = getRealPathFromUri(file.uri)
                         results.add(
                             PcGameEntity(
                                 name = gameName,
                                 exeName = fileName,
-                                path = file.uri.toString()
+                                path = realPath
                             )
                         )
                     }
@@ -106,5 +106,28 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    private fun getRealPathFromUri(uri: Uri): String {
+        val uriString = uri.toString()
+        if (uriString.contains("%3A") || uriString.contains(":")) {
+            val decoded = Uri.decode(uriString)
+            val docPart = when {
+                decoded.contains("/document/") -> decoded.substringAfter("/document/")
+                decoded.contains("/tree/") -> decoded.substringAfter("/tree/")
+                else -> ""
+            }
+            if (docPart.contains(":")) {
+                val split = docPart.split(":")
+                val volume = split[0].substringAfterLast("/")
+                val relPath = split.getOrNull(1) ?: ""
+                return if (volume.equals("primary", ignoreCase = true)) {
+                    "/storage/emulated/0/$relPath"
+                } else {
+                    "/storage/$volume/$relPath"
+                }
+            }
+        }
+        return uri.path ?: uriString
     }
 }
