@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="Theme.WinlatorHub" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- Tema scuro anche a livello di finestra: niente lampo bianco all'avvio. -->
+    <style name="Theme.WinlatorHub" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/steam_bg</item>
+        <item name="android:colorBackground">@color/steam_bg</item>
+    </style>
 </resources>

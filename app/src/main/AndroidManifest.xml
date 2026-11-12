@@ -2,13 +2,25 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Permesso per consentire all'hub di rilevare Winlator e le sue fork tra le app installate -->
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+    <!--
+        Visibilità dei pacchetti di Winlator e delle sue fork. Serve solo per questi nomi,
+        quindi QUERY_ALL_PACKAGES non è più necessario.
+        Se usi un altro fork, aggiungi qui il suo package e anche nella lista
+        WINLATOR_PACKAGES in WinlatorLauncher.kt.
+    -->
+    <queries>
+        <package android:name="com.winlator" />
+        <package android:name="com.winlator.frost" />
+        <package android:name="com.winlator.amod" />
+        <package android:name="com.winlator.cmod" />
+        <package android:name="com.winlator.glodroid" />
+    </queries>
 
+    <!-- Backup disattivato: vedi res/xml/data_extraction_rules.xml. -->
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
+        tools:ignore="DataExtractionRules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -17,23 +29,13 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:screenOrientation="userLandscape"
-            android:theme="@style/Theme.WinlatorHub"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-            <!-- Filtro per rilevare il collegamento dell'SSD USB-C -->
-            <intent-filter>
-                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
-            </intent-filter>
-            <meta-data
-                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
-                android:resource="@xml/device_filter" />
         </activity>
     </application>
 
